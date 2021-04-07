@@ -11,7 +11,7 @@ pipeline {
 
 	stages {
 		stage('Checkout') {
-			steps {
+			steps{
 				sh "mvn --version"
 				sh "docker version"
 				echo "Build"
@@ -23,30 +23,31 @@ pipeline {
 			}
 		}
 		stage('Compile') {
-			steps {
+			steps{
 				sh "mvn clean compile"
 			}
+		}
 		stage('Test') {
-			steps {
+			steps{
 				sh "mvn test"
 			}
 		}
 		stage('Integration Test') {
-			steps {
+			steps{
 				sh "mvn failsafe:integration-test failsafe:verify"
 			}
 		}
 	}
-	post {
-		always {
-			echo "I run always"
-		}
-		success {
-			echo "I run only when you are successful"
-		}
-		failure {
-			echo "I run only when you fail"
-		}
-	}
-}
+	// post {
+	// 	always {
+	// 		echo "I run always"
+	// 	}
+	// 	success {
+	// 		echo "I run only when you are successful"
+	// 	}
+	// 	failure {
+	// 		echo "I run only when you fail"
+	// 	}
+	// }
+ }
 }
